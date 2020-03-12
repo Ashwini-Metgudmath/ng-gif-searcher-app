@@ -1,0 +1,23 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+
+<div *ngIf="displaySpinner" class="loader"></div>
+
+<div style="text-align: center;">
+<input style="border-style: groove; padding: 10px" (keyup)="getKey($event.target.value)" type="text" placeholder="Enter search key"/>
+<input style="border-style: groove; padding: 10px;" (keyup)="getLimit($event.target.value)" type="Number" placeholder="Enter output limit"/>
+</div>
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="Image">
+    <mat-cell *matCellDef="let element">
+      <img src="{{element.images.downsized.url}}"></mat-cell>
+  </ng-container>
+
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+<router-outlet></router-outlet>
